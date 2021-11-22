@@ -1,0 +1,3 @@
+rootProject.name = 'geode-websession'
+include 'geode-gateway'
+
