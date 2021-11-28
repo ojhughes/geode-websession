@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;
 import reactor.core.scheduler.Schedulers;
 
+import java.util.Optional;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 
@@ -70,17 +71,9 @@ public class GemfireSessionRepository implements ReactiveSessionRepository<GemFi
                         sessionRepository.deleteById(id);
                         return null;
                     };
-                    return submit(saveGemfireSession);
+                    return taskExecutor.submit(saveGemfireSession).get();
                 })
                 .subscribeOn(Schedulers.boundedElastic());
     }
 
-    private Void submit(Callable<Void> saveGemfireSession) {
-        try {
-            return taskExecutor.submit(saveGemfireSession)
-                    .get();
-        } catch (InterruptedException | ExecutionException e) {
-            throw new RuntimeException(e);
-        }
-    }
 }

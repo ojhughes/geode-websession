@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.server.WebSession;
 
 @Controller
-public class TestController {
+public class SessionWebController {
 
     @PostMapping("/session")
     public String setAttribute(@ModelAttribute SessionAttributeForm sessionAttributeForm, WebSession session) {

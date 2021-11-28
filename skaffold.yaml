@@ -1,0 +1,23 @@
+apiVersion: skaffold/v2beta23
+kind: Config
+metadata:
+  name: geode-websession
+build:
+  artifacts:
+    - image: geode-websession
+      context: geode-gateway
+      custom:
+        buildCommand: |
+          ../gradlew bootBuildImage --imageName="$IMAGE"
+        dependencies:
+          paths:
+            - src/main/resources/META-INF
+#      buildpacks:
+#        builder: gcr.io/paketo-buildpacks/builder:base
+
+
+deploy:
+  kustomize:
+
+    paths:
+      - k8s

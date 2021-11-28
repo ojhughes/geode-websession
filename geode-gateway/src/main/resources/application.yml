@@ -1,0 +1,12 @@
+spring:
+  data:
+#    gemfire:
+#      locators: geode-websession[10344]
+      cache:
+        server:
+          bind-address: 0.0.0.0
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
