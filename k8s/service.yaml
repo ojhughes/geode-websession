@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: geode-websession
+spec:
+  type: LoadBalancer
+  selector:
+    app: geode-websession
+  ports:
+  - port: 10334
+    name: tcp-locator
+    targetPort: 10334
+  - port: 1099
+    name: tcp-manager
+    targetPort: 1099
+  - port: 40404
+    name: tcp-cache
+    targetPort: 40404
+  - port: 8080
+    name: http-web
+    targetPort: 8080
+

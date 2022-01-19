@@ -4,18 +4,11 @@ metadata:
   name: geode-websession
 build:
   artifacts:
-    - image: geode-websession
+    - image: ojhughes/geode-websession
       context: geode-gateway
       custom:
         buildCommand: |
-          ../gradlew bootBuildImage --imageName="$IMAGE"
-        dependencies:
-          paths:
-            - src/main/resources/META-INF
-#      buildpacks:
-#        builder: gcr.io/paketo-buildpacks/builder:base
-
-
+          ../gradlew bootBuildImage --imageName="$IMAGE" && docker push "$IMAGE"
 deploy:
   kustomize:
 

@@ -2,7 +2,6 @@ plugins {
     java
     id("org.springframework.boot") version "2.6.0"
     id("io.spring.dependency-management") version "1.0.11.RELEASE"
-//    id("com.google.cloud.tools.jib") version "3.1.4"
 }
 
 group = "com.example"
@@ -27,11 +26,16 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-actuator")
     implementation("org.springframework.boot:spring-boot-starter-webflux")
     implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
+    implementation("org.springframework.boot:spring-boot-starter-cache")
     implementation("io.kubernetes:client-java:${property("kubernetesJavaClientVersion")}")
-    implementation("io.kubernetes:client-java-spring-integration:${property("kubernetesJavaClientVersion")}")
     implementation("org.springframework.geode:spring-geode-starter")
+    implementation("org.springframework.geode:spring-geode-starter-actuator")
     implementation("org.springframework.session:spring-session-core")
     implementation("org.springframework.session:spring-session-data-geode")
+    implementation("com.giffing.bucket4j.spring.boot.starter:bucket4j-spring-boot-starter:0.4.0")
+    implementation("com.giffing.bucket4j.spring.boot.starter:bucket4j-spring-boot-starter-context:0.4.0")
+    implementation("javax.cache:cache-api")
+    runtimeOnly("javax.servlet:javax.servlet-api")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("io.projectreactor:reactor-test")
 }
